@@ -9,10 +9,10 @@ N [0-9]+
 
 %%
 [\#\\][^\n]*            { }
-"0x"[0-9a-fA-F]+        { yylval.i = strtol(&yytext[2],NULL,0x10); return HEX; }
-"0b"[01]+               { yylval.i = strtol(&yytext[2],NULL,0x02); return BIN; }
-{S}{N}.[0-9]*           { yylval.f = atof(yytext); return NUM; }
-{S}{N}                  { yylval.i = strtol(yytext,NULL,0x0A); return INT; }
-[^ \t\r\n\#\\]+         { yylval.s = new string(yytext); return SYM; }
+"0x"[0-9a-fA-F]+        { yylval.s = new Hex(strtol(&yytext[2],NULL,0x10)); return HEX; }
+"0b"[01]+               { yylval.s = new Bin(strtol(&yytext[2],NULL,0x02)); return BIN; }
+{S}{N}.[0-9]*           { yylval.s = new Num(yytext); return NUM; }
+{S}{N}                  { yylval.s = new Int(strtol(&yytext[0],NULL,0x0A)); return INT; }
+[^ \t\r\n\#\\]+         { yylval.s = new Str(yytext); return SYM; }
 [ \t\r\n]+              { }
 .                       { yyerror("lexer"); }
