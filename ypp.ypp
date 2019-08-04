@@ -2,10 +2,10 @@
     #include "hpp.hpp"
 %}
 
-%defines %union { int i; float f; string *s; }
+%defines %union { long i; float f; string *s; }
 
 %token <s> SYM
-%token <i> INT
+%token <i> INT HEX BIN
 %token <f> NUM
 
 %%
@@ -14,4 +14,6 @@ REPL :
 REPL : REPL ex
 ex : NUM        { cout << "num:" <<  $1 << endl; }
 ex : INT        { cout << "int:" <<  $1 << endl; }
+ex : HEX        { cout << "hex:" <<  $1 << endl; }
+ex : BIN        { cout << "bin:" <<  $1 << endl; }
 ex : SYM        { cout << "sym:" << *$1 << endl; }
