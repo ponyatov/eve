@@ -1,2 +1,6 @@
-log.log
-exe.exe
+*~
+*.swp
+*.log
+*.exe
+ypp.tab.?pp
+lex.yy.c
