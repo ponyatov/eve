@@ -4,8 +4,8 @@
 
 %defines %union { int i; string *s; }
 
-%token <s> sym
+%token <s> SYM
 
 %%
 
-REPL : | REPL sym   { cout << $2 << endl; }
+REPL : | REPL SYM   { cout << $2 << endl; }
