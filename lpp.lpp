@@ -4,7 +4,12 @@
 
 %option yylineno noyywrap
 
+S [+\-]?
+N [0-9]+
+
 %%
 [\#\\][^\n]*            { }
+{S}{N}                  { yylval.i = atoi(yytext); return INT; }
 [^ \t\r\n\#\\]+         { yylval.s = new string(yytext); return SYM; }
+[ \t\r\n]+              { }
 .                       { yyerror("lexer"); }
